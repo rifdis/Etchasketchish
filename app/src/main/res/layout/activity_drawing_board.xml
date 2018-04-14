@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ccc"
+    tools:context="com.example.tkarl.etchasketchish.DrawingBoard"
+    android:id="@+id/main_Layout">
+
+    <TextView
+        android:id="@+id/testtext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/draw_text"
+        android:textSize="25sp"
+        android:gravity="center_vertical|center_horizontal"
+
+       />
+    <com.example.tkarl.etchasketchish.DrawingView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/canvas_board"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_weight="1"
+        android:background="#FFFFFFFF">
+
+    </com.example.tkarl.etchasketchish.DrawingView>
+
+    <LinearLayout
+        android:id="@+id/Arrow_Holder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <ImageButton
+            android:id="@+id/arrow_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/upward_arrow"
+            android:contentDescription="Draw Up"/>
+        <ImageButton
+            android:id="@+id/arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_downwards"/>
+        <ImageButton
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_left"/>
+        <ImageButton
+            android:id="@+id/arrow_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right"
+           />
+    </LinearLayout>
+
+
+</LinearLayout>
