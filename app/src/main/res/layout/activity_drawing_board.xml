@@ -28,10 +28,20 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="3dp"
         android:layout_weight="1"
-        android:background="#FFFFFFFF">
+        android:background="#FFFFFFFF"
+        >
 
     </com.example.tkarl.etchasketchish.DrawingView>
+<LinearLayout
 
+    android:id="@+id/option_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:background="#fff"
+    android:gravity="center_horizontal">
+
+</LinearLayout>
     <LinearLayout
         android:id="@+id/Arrow_Holder"
         android:layout_width="fill_parent"
@@ -39,11 +49,19 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal">
         <ImageButton
+            android:id="@+id/Choose_Colour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_choose_colour"
+            android:contentDescription="Colours"/>
+
+        <ImageButton
             android:id="@+id/arrow_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/upward_arrow"
-            android:contentDescription="Draw Up"/>
+            android:contentDescription="Draw Up"
+            />
         <ImageButton
             android:id="@+id/arrow_down"
             android:layout_width="wrap_content"
@@ -60,6 +78,13 @@
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_right"
            />
+        <ImageButton
+            android:id="@+id/Choose_Brush_Size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_brush_size"
+            android:contentDescription="Brush Size"/>
     </LinearLayout>
 
 

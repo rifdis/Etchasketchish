@@ -33,12 +33,17 @@ public class DrawingView extends View implements View.OnTouchListener{
     int CanvasHeight;
     int CurrentPosX;
    int CurrentPosY;
+   public static int paintColor;
+   public static int brushSize;
     Context mainContext;
     View mainView;
     public DrawingView(Context context,AttributeSet attrs) {
         super(context,attrs);
-        setUpDrawing();
+
+        paintColor = Color.BLUE;
+        brushSize = 50;
       mainContext = this.getContext();
+        setUpDrawing();
     }
 
     @Override
@@ -51,9 +56,12 @@ public class DrawingView extends View implements View.OnTouchListener{
         bitmap = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888);
         drawingCanvas = new Canvas(bitmap);
         Toast.makeText(mainContext, Integer.toString(h), Toast.LENGTH_SHORT).show();
+        //find center to start.
         CurrentPosY = Math.round(h/2);
         CurrentPosX = Math.round(w/2);
+
         this.setOnTouchListener(this);
+
 
     }
     @Override
@@ -65,13 +73,13 @@ public class DrawingView extends View implements View.OnTouchListener{
         drawingPath = new Path();
         drawPaint = new Paint();
 
-        drawPaint.setColor(Color.BLUE);
+        drawPaint.setColor(paintColor);
 
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(50);
+        drawPaint.setStrokeWidth(brushSize);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
-        drawPaint.setStrokeCap(Paint.Cap.SQUARE);
+        drawPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public boolean onSetAction(int Direction){
@@ -80,18 +88,17 @@ public class DrawingView extends View implements View.OnTouchListener{
 
             case 1:
                 //Up
-
+                CurrentPosY = CurrentPosY - (brushSize/6);
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
-                CurrentPosY = CurrentPosY - 20;
+                //set to how far you want each stroke to go.
                drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
                 break;
             case 2:
                 //down
-
+                CurrentPosY = CurrentPosY + (brushSize/6);
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
-                CurrentPosY = CurrentPosY + 20;
                 drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
@@ -99,17 +106,17 @@ public class DrawingView extends View implements View.OnTouchListener{
             case 3:
                 //left
 
+
+                CurrentPosX = CurrentPosX -(brushSize/6);
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
-                CurrentPosX = CurrentPosX -20;
                 drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
                 break;
             case 4:
                 //right
-
+                CurrentPosX = CurrentPosX +(brushSize/6);
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
-                CurrentPosX = CurrentPosX +20;
                 drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
