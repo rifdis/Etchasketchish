@@ -149,6 +149,8 @@ public class DrawingView extends View implements View.OnTouchListener{
     public boolean clearCanvas(){
 
         bitmap.eraseColor(Color.WHITE);
+        CurrentPosX = CanvasWidth/2;
+        CurrentPosY= CanvasHeight/2;
      invalidate();
      return true;
 
