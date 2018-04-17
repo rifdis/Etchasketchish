@@ -5,6 +5,11 @@ import android.content.IntentSender;
 import android.content.res.XmlResourceParser;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Xml;
@@ -20,13 +25,18 @@ import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 
-public class DrawingBoard extends AppCompatActivity implements View.OnClickListener {
+public class DrawingBoard extends AppCompatActivity implements View.OnClickListener, SensorEventListener {
 DrawingView drawView;
 private static   LayoutInflater inflate;
 private static  LinearLayout optionLayout;
     ImageButton upButton,downButton,rightButton,leftButton,colourbutton,brushbutton;
    boolean colormenuSelected;
     boolean brushmenuSelected;
+    SensorManager sensorMgr;
+    Sensor shakesense;
+    private long lastupdate = 0;
+    private float lasty;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +59,9 @@ private static  LinearLayout optionLayout;
         brushbutton.setOnClickListener(this);
 
         optionLayout = (LinearLayout)findViewById(R.id.option_layout);
-
-
+        sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
+        shakesense = sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorMgr.registerListener(this, shakesense , SensorManager.SENSOR_DELAY_NORMAL);
     }
 
 
@@ -173,4 +184,31 @@ private static  LinearLayout optionLayout;
     }
 
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        Sensor accel = event.sensor;
+        if (accel.getType() == Sensor.TYPE_ACCELEROMETER){
+            float y = event.values[1];
+            long curTime = System.currentTimeMillis();
+            if ((curTime - lastupdate) > 200) {
+                long diffTime = (curTime - lastupdate);
+                lastupdate = curTime;
+
+                float speed = Math.abs( y  - lasty)/ diffTime * 10000;
+
+                if (speed > 800) {
+                  drawView.clearCanvas();
+                }
+
+
+                lasty = y;
+
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }

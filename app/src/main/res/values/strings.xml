@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">EtchASketchIsh</string>
-    <string name="draw_text">DRAW!</string>
+    <string name="draw_text">Shake To Erase!</string>
 </resources>

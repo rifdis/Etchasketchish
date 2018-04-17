@@ -88,17 +88,19 @@ public class DrawingView extends View implements View.OnTouchListener{
 
             case 1:
                 //Up
-                CurrentPosY = CurrentPosY - (brushSize/6);
+
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
                 //set to how far you want each stroke to go.
+                CurrentPosY = CurrentPosY - (brushSize/6);
                drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
                 break;
             case 2:
                 //down
-                CurrentPosY = CurrentPosY + (brushSize/6);
+
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
+                CurrentPosY = CurrentPosY + (brushSize/6);
                 drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
@@ -107,16 +109,18 @@ public class DrawingView extends View implements View.OnTouchListener{
                 //left
 
 
-                CurrentPosX = CurrentPosX -(brushSize/6);
+
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
+                CurrentPosX = CurrentPosX -(brushSize/6);
                 drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
                 break;
             case 4:
                 //right
-                CurrentPosX = CurrentPosX +(brushSize/6);
+
                 drawingPath.moveTo(CurrentPosX,CurrentPosY);
+                CurrentPosX = CurrentPosX +(brushSize/6);
                 drawingPath.lineTo(CurrentPosX,CurrentPosY );
                 drawingCanvas.drawPath(drawingPath,drawPaint);
                 drawingPath.reset();
@@ -133,11 +137,20 @@ public class DrawingView extends View implements View.OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN){
+
             CurrentPosY = Math.round(event.getY());
             CurrentPosX = Math.round(event.getX());
             Toast.makeText(mainContext, Integer.toString(CurrentPosY), Toast.LENGTH_SHORT).show();
 
         }
         return false;
+    }
+
+    public boolean clearCanvas(){
+
+        bitmap.eraseColor(Color.WHITE);
+     invalidate();
+     return true;
+
     }
 }
