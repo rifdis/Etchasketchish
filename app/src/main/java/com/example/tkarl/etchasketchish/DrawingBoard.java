@@ -67,19 +67,19 @@ private static  LinearLayout optionLayout;
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.arrow_up:
-                drawView.onSetAction(1);
-                break;
-            case R.id.arrow_down:
-                drawView.onSetAction(2);
-                break;
-            case R.id.arrow_left:
-                drawView.onSetAction(3);
-                break;
-            case R.id.arrow_right:
-                drawView.onSetAction(4);
-                break;
+            switch (v.getId()){
+                case R.id.arrow_up:
+                    drawView.onSetAction(1);
+                    break;
+                case R.id.arrow_down:
+                    drawView.onSetAction(2);
+                    break;
+                case R.id.arrow_left:
+                    drawView.onSetAction(3);
+                    break;
+                case R.id.arrow_right:
+                    drawView.onSetAction(4);
+                    break;
             case R.id.Choose_Colour:
                 if (!colormenuSelected) {
                     brushbutton.setEnabled(true);
